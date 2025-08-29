@@ -17,9 +17,12 @@
   <!-- Header -->
   <header class="header">
     <div class="container">
+      <a href="./index.html" class="logo">Web<span class="logo-studio">Studio</span></a>
+      <button class="mobile-menu-button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+        <span class="mobile-menu-icon"></span>
+      </button>
       <nav class="navigation">
-        <a href="./index.html" class="logo">Web<span class="logo-studio">Studio</span></a>
-        <ul class="nav-list">
+        <ul class="nav-list" id="mobile-menu">
           <li class="nav-item">
             <a href="./index.html" class="nav-link current">Studio</a>
           </li>
@@ -136,7 +139,6 @@
                 </li>
               </ul>
             </div>
-            
           </li>
           <li class="team-item">
             <img src="./images/tom-ford.jpg" alt="Tom Ford Frontend Developer" width="264" height="260">
@@ -388,7 +390,7 @@
     </div>
   </footer>
 
-  <!-- Контейнер для модального вікна (додано після footer) -->
+  <!-- Контейнер для модального вікна -->
   <div class="backdrop is-hidden" data-modal>
     <div class="modal">
       <button type="button" class="modal-close-btn" data-modal-close aria-label="Close modal">
@@ -398,7 +400,7 @@
       </button>
       <p class="modal-title">Leave your contacts and we will call you back</p>
       <form class="modal-form" name="contact-form">
-        <div class="form-field" style="margin-bottom: 8px;">
+        <div class="form-field">
           <label for="user-name" class="form-label">Name</label>
           <div class="input-wrapper">
             <input
@@ -415,7 +417,7 @@
           </div>
         </div>
 
-        <div class="form-field" style="margin-bottom: 8px;">
+        <div class="form-field">
           <label for="user-phone" class="form-label">Phone</label>
           <div class="input-wrapper">
             <input
@@ -432,7 +434,7 @@
           </div>
         </div>
 
-        <div class="form-field" style="margin-bottom: 8px;">
+        <div class="form-field">
           <label for="user-email" class="form-label">Email</label>
           <div class="input-wrapper">
             <input
@@ -459,7 +461,7 @@
           ></textarea>
         </div>  
 
-        <div class="form-field checkbox-field" style="margin-bottom: 24px;">
+        <div class="form-field checkbox-field">
           <input
             type="checkbox"
             name="user-privacy"
@@ -490,16 +492,50 @@
       openModalBtn: document.querySelector('[data-modal-open]'),
       closeModalBtn: document.querySelector('[data-modal-close]'),
       modal: document.querySelector('[data-modal]'),
+      mobileMenuButton: document.querySelector('.mobile-menu-button'),
+      mobileMenu: document.querySelector('#mobile-menu')
     };
 
+    // Обробка модального вікна
     if (refs.openModalBtn && refs.closeModalBtn && refs.modal) {
       refs.openModalBtn.addEventListener('click', toggleModal);
       refs.closeModalBtn.addEventListener('click', toggleModal);
     }
 
     function toggleModal() {
-      refs.modal.classList.toggle('is-open');
+      refs.modal.classList.toggle('is-hidden');
     }
+
+    // Обробка мобільного меню
+    if (refs.mobileMenuButton && refs.mobileMenu) {
+      refs.mobileMenuButton.addEventListener('click', toggleMobileMenu);
+    }
+
+    function toggleMobileMenu() {
+      const isExpanded = refs.mobileMenuButton.getAttribute('aria-expanded') === 'true';
+      refs.mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+      refs.mobileMenu.classList.toggle('is-open');
+      refs.mobileMenuButton.classList.toggle('is-active');
+    }
+
+    // Закриття мобільного меню при кліку на посилання
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (refs.mobileMenu.classList.contains('is-open')) {
+          toggleMobileMenu();
+        }
+      });
+    });
+
+    // Закриття мобільного меню при кліку за межами
+    document.addEventListener('click', (event) => {
+      if (refs.mobileMenu.classList.contains('is-open') && 
+          !refs.mobileMenu.contains(event.target) && 
+          !refs.mobileMenuButton.contains(event.target)) {
+        toggleMobileMenu();
+      }
+    });
   </script>
 </body>
 </html>
