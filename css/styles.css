@@ -67,7 +67,7 @@ body {
               0px 1px 6px rgba(46, 47, 66, 0.08);
 }
 
-.header .container {
+.header-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -254,6 +254,10 @@ body {
 }
 
 /* Features Section */
+.features-section {
+  background-color: var(--cloud); /* Додано сірий фон */
+}
+
 .features-list {
   display: flex;
   flex-direction: column;
@@ -882,7 +886,7 @@ img {
     padding: 0 16px;
   }
   
-  .header .container {
+  .header-container {
     padding: 0 16px;
     height: 72px;
   }
@@ -1106,11 +1110,14 @@ img {
   }
   
   .team-list {
+    flex-direction: row;
+    flex-wrap: nowrap; /* Змінено з wrap на nowrap */
     gap: 24px;
   }
   
   .team-item {
     width: calc((100% - 72px) / 4);
+    flex-shrink: 0; /* Додано для запобігання стисканню */
   }
   
   .portfolio-list {
