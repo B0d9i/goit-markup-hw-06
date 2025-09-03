@@ -1015,6 +1015,8 @@ img {
   .desktop-contact-info .contact-list {
     flex-direction: column;
     gap: 4px;
+    justify-content: center;
+    margin-top: 4px; /* Додано відступ зверху для всього списку */
   }
   
   .desktop-contact-info .contact-item:first-child {
@@ -1023,8 +1025,9 @@ img {
   
   .desktop-contact-info .contact-item:first-child .contact-link {
     font-size: 11px;
-    line-height: 1.1;
+    line-height: 1.3; /* Збільшено висоту рядка */
     word-break: break-word;
+    padding-top: 2px; /* Додано невеликий відступ зверху */
   }
 
   .container {
@@ -1221,6 +1224,7 @@ img {
   .contact-list {
     flex-direction: row;
     gap: 40px;
+    align-items: center; /* Вирівнюємо по центру по вертикалі */
   }
   
   .contact-link {
