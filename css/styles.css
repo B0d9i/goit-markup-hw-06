@@ -1021,11 +1021,10 @@ img {
     display: block; /* Показуємо елемент з поштою */
   }
   
-  .desktop-contact-info .contact-link {
-    font-size: 12px;
-    line-height: 1.17;
-    letter-spacing: 0.04em;
-    padding: 0;
+  .desktop-contact-info .contact-item:first-child .contact-link {
+    font-size: 11px;
+    line-height: 1.1;
+    word-break: break-word;
   }
 
   .container {
@@ -1225,10 +1224,10 @@ img {
   }
   
   .contact-link {
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.5;
     letter-spacing: 0.02em;
-    padding: 24px 0;
+    padding: 16px 0;
   }
   
   .hero-section {
